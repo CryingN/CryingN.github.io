@@ -75,6 +75,7 @@ author:
   youtube          : # Username
   qq               : "2053401695"
   wechat           : "Crying_Nights"
+  bili             : "205358785"
   zhihu            : "https://www.zhihu.com/people/xiao-nuo-yi-han" # URL
 
 # Publication Category - The following the list of publication categories and their headings
@@ -219,9 +220,9 @@ collections:
   publications:
     output: true
     permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
+  #portfolio:
+  #  output: true
+  #  permalink: /:collection/:path/
   talks:
     output: true
     permalink: /:collection/:path/
@@ -266,14 +267,14 @@ defaults:
       share: true
       comments: true
   # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
+  #- scope:
+  #    path: ""
+  #    type: portfolio
+  #  values:
+  #    layout: single
+  #    author_profile: true
+  #    share: true
+  #    comment: true
   # _talks
   - scope:
       path: ""

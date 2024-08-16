@@ -159,6 +159,9 @@
       {% if author.wechat %}
       <li><a href="weixin://contacts/profile/{{ author.wechat }}"><i class="fab fa-fw fa-weixin icon-pad-right" aria-hidden="true"></i>微信</a></li>
       {% endif %}
+      {% if author.bili %}
+      <li><a href="https://space.bilibili.com/{{ author.bili }}"><i class="fab fa-fw fa-bilibili icon-pad-right" aria-hidden="true"></i>Bilibili</a></li>
+      {% endif %}
       {% if author.zhihu %}
       <li><a href="{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>知乎</a></li>
       {% endif %}      
