@@ -730,7 +730,7 @@ print(decrypt(pad(l2b(x))))
 # BaseCTF{BF3DCONZ-67FE-ENZU-385S-CSNI13B2}
 ```
 
-# Week4(MISC)
+# Week3(MISC)
 
 ## 白丝上的flag
 
