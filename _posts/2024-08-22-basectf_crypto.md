@@ -636,6 +636,268 @@ if __name__ == '__main__':
 # 拿到图片:BaseCTF{Bl4ck_5ilk_1s_the_best}
 ```
 
+# Week3(crypto)
+
+## ez_log
+
+### 题目
+
+```python
+from Crypto.Util.number import bytes_to_long as b2l, long_to_bytes as l2b, getPrime
+from Crypto.Cipher import AES
+from random import randint
 
 
+flag = b"flag{test_flag}"
+
+pad = lambda x: x+b'\x00'*(16-len(x)%16)
+
+def encrypt(KEY):
+    cipher= AES.new(KEY,AES.MODE_ECB)
+    encrypted =cipher.encrypt(flag)
+    return encrypted
+def decrypt(KEY):
+    cipher= AES.new(KEY,AES.MODE_ECB)
+    decrypted =cipher.decrypt(enc)
+    return decrypted
+
+flag = pad(flag)
+x = randint(10 ** 7, 10 ** 8)
+y = randint(10 ** 7, 10 ** 8)
+n = getPrime(28)
+z = pow(y, x, n)
+
+enc = encrypt(pad(l2b(x)))
+print(f'enc = {b2l(enc)}')
+print(f'y = {y}')
+print(f'n = {n}')
+print(f'z = {z}')
+
+'''
+enc = 33416570913716503492297352041317858420349510954381249751537743898024527101872454706181188441210166165803904185550746
+y = 82941012
+n = 228338567
+z = 51306718
+'''
+```
+
+### 解析
+
+这大概是最轻松的一次题目, 我希望能为后面做铺垫, 大家能循序渐进地过渡到DLP密码体系. 离散对数是密码学中比较重要的概念, 常用于ECC中代替除法, 本题返璞归真用于理解求离散对数.
+
+由题目可知
+
+$$
+z \equiv y^x \mod{n}
+$$
+
+现给出y, b, z, 欲求x, 在实数域中我们可以取对数进行计算:
+
+$$
+x = \log_{y}{z}
+$$
+
+但是现在在模环中, 感兴趣可以尝试用可视化工具生成x, 发现点离散分布在环上, 我们将这种情况下的求解称为离散对数求解, 不想写了, 感兴趣可以看sagemath源码, 总之有exp如下:
+
+### EXP
+
+```python
+from sage.all import *
+from Crypto.Cipher import AES
+from Crypto.Util.number import bytes_to_long as b2l, long_to_bytes as l2b
+
+pad = lambda x: x+b'\x00'*(16-len(x)%16)
+
+def decrypt(KEY):
+    cipher= AES.new(KEY,AES.MODE_ECB)
+    decrypted =cipher.decrypt(enc)
+    return decrypted
+
+enc = 33416570913716503492297352041317858420349510954381249751537743898024527101872454706181188441210166165803904185550746
+y = 82941012
+n = 228338567
+z = 51306718
+
+enc = l2b(enc)
+G = GF(n)
+z = G(z)
+y = G(y)
+x = discrete_log(z, y)
+
+
+print(decrypt(pad(l2b(x))))
+
+# BaseCTF{BF3DCONZ-67FE-ENZU-385S-CSNI13B2}
+```
+
+# Week4(MISC)
+
+## 白丝上的flag
+
+### 题目
+
+某出题人赠送大家flag时遭遇了信号干扰, 幸好我们在不知名小网站找到了写入flag前的图片, 尝试还原信息吧!
+
+<img src="/images/image.png">
+
+<img src="/images/en_image.png">
+
+> hint: flag是单色
+
+### 解析
+
+题目很简单, 问题就在题面上, 很多做法都可以完成, 本次图片加密借鉴了非feistel网络, 尽可能防止了工具直接秒, 有一说一2595x2294的图片真的很难丢失信息, 以至于上了加法, 先说说暴力解法:
+
+已知flag为单色, 所以直接找到不同的颜色就行:
+
+```python
+from PIL import Image
+from random import randint
+import sys
+
+def ez_add(a,b,c,d):
+    global iv
+    h = (a+b+c+d+iv) % 256
+    e = b
+    f = c
+    g = d
+    iv = (b+c+d+iv) % 256
+    return e,f,g,h
+
+def confuse(data):
+    r,g,b,a = data
+    for _ in range(8):
+        r,g,b,a = ez_add(r,g,b,a)
+    return r,g,b,a
+
+def confuse_image(flag, data):
+    global iv
+    iv = flag.getpixel((1,1))[0]
+    for w in range(flag.width):
+        for h in range(flag.height):
+            pixel = confuse(flag.getpixel((w,h)))
+            if pixel == data.getpixel((w,h)):
+                old_pix = flag.getpixel((w-1,h))
+                old_iv = iv
+            else:
+                print(f'初始值: {data.getpixel((w,h))}')
+                print(f'iv = {old_iv}')
+                exit()
+
+# 填入数值后执行第二部分
+def confuse_image2(flag, data):
+    global iv
+    iv = flag.getpixel((1,1))[0]
+    img = Image.new('RGBA', (flag.width, flag.height))
+    for w in range(img.width):
+        for h in range(img.height):
+            pixel = confuse(flag.getpixel((w,h)))
+            if pixel == data.getpixel((w,h)):
+                old_pix = flag.getpixel((w-1,h))
+                old_iv = iv
+            else:
+                iv = old_iv
+                pixel = confuse((114,114,114,255))
+                img.putpixel((w,h), (114,114,114,255))
+                old_iv = iv
+    return img
+
+
+if __name__ == '__main__':
+    iv = 0
+    flag = Image.open("./image.png")
+    data = Image.open("./en_image.png")
+    # 第一部分
+    confuse_image(flag, data)
+    # 第二部分
+    img = confuse_image2(flag, data)
+    img.save("./exp.png")
+```
+
+中间获取的代码使用[vlang](https://vlang.io/)可以快速计算出来(没错, 我又来推销vlang了):
+
+```go
+module main
+
+fn main() {
+        println('获取flag数值ing...')
+        mut data := [0,0,0,255]
+        iv := 224
+        for a in 0..256 {
+                for b in 0..256 {
+                        for c in 0..256 {
+                                data = [a, b, c, 255]
+                                data = ez_add(mut data, iv)
+                                if data == [221, 187, 211, 197] {
+                                        print('flag_color = [${a},${b},${c},255]')
+                                        exit(1)
+                                }
+                        }
+                }
+        }
+        println('没有?')
+}
+
+fn ez_add(mut data []int,iv int) []int {
+        mut new_iv := iv
+        for _ in 0..8 {
+                d := (data[0]+data[1]+data[2]+data[3]+new_iv) % 256
+                a := data[1]
+                b := data[2]
+                c := data[3]
+                new_iv = (data[1]+data[2]+data[3]+new_iv) % 256
+                data = [a,b,c,d]
+        }
+        return data
+}
+/*
+获取flag数值ing...
+flag_color = [114,114,114,255]
+real    0m7.423s
+user    0m7.359s
+sys     0m0.031s
+*/
+```
+
+没错, flag是可以直接还原的, 只需要一点小小的编程能力即可. 另外也可以用xor暴力求解, 不过成图让我也很疑惑, 所以不作为标准解答:
+
+```python
+from PIL import Image
+from random import randint
+import sys
+
+def ez_add(a,b,c,d):
+    global iv
+    h = (a+b+c+d+iv) % 256
+    e = b
+    f = c
+    g = d
+    iv = (b+c+d+iv) % 256
+    return e,f,g,h
+
+def confuse(data):
+    r,g,b,a = data
+    for _ in range(8):
+        r,g,b,a = ez_add(r,g,b,a)
+    return r,g,b,a
+
+def confuse_image(flag, data):
+    global iv
+    iv = flag.getpixel((1,1))[0]
+    img = Image.new('RGBA', (flag.width, flag.height))
+    for w in range(img.width):
+        for h in range(img.height):
+            a,b,c,d = confuse(flag.getpixel((w,h)))
+            _a,_b,_c,_d = data.getpixel((w,h))
+            img.putpixel((w,h), (a^_a, b^_b, c^_c, d^_d))
+    return img
+
+
+if __name__ == '__main__':
+    iv = 0
+    flag = Image.open("./image.png")
+    data = Image.open("./en_image.png")
+    img = confuse_image(flag, data)
+    img.save("./xor.png")
+```
 
