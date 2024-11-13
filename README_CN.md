@@ -27,10 +27,6 @@ Academic Pages 是用于学术网站的 Github Pages 模板。
     ```bash
     sudo apt install ruby-dev ruby-bundler nodejs
     ```
-    在arch系linux发行版的命令为:
-    ```bash
-    
-    ```
     在 MacOS 上，命令为：
     ```bash
     brew install ruby
