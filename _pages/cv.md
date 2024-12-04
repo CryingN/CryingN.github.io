@@ -101,6 +101,12 @@ redirect_from:
   * 配音
   * 自动化
 
+博客文章
+======
+  <ul>{% for post in site.posts reversed %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
+
 作品
 ======
   <ul>{% for post in site.publications reversed %}
@@ -119,8 +125,3 @@ redirect_from:
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
 
-博客文章
-======
-  <ul>{% for post in site.posts reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
