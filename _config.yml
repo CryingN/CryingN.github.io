@@ -21,7 +21,7 @@ repository               : "academicpages/cryingn.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.jpg"
+  avatar           : "https://q1.qlogo.cn/g?b=qq&nk=2053401695&s=640" # "profile.jpg" 
   name             : "CryingN"
   pronouns         : # example: "she/her"  
   bio              : "早安, 晚安, 谢谢, 再见."

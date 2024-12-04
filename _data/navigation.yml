@@ -19,9 +19,10 @@ main:
         
   - title: "博客文章"
     url: /year-archive/
+
+  - title: "友链"
+    url: /markdown/
     
   - title: "个人简历"
     url: /cv/
     
-  #- title: "Guide"
-  #  url: /markdown/

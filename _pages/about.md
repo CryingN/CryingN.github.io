@@ -19,4 +19,4 @@ redirect_from:
 
 我们欢迎热爱网络安全或开源事业的成员加入, 如果感兴趣请与我联系.
 
-<img src='/images/VYCMa.png'>
+<img src='https://gitee.com/sakana_ctf/vtf/raw/master/static/image/VYCMa.webp'>
