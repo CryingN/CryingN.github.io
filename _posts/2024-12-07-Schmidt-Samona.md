@@ -6,6 +6,8 @@ excerpt: '一种类rsa的密码系统...'
 tags:
   - CTF
   - 网络安全
+  - 密码学
+  - 非对称加密
   - rsa
 ---
 
@@ -104,4 +106,4 @@ print(l2b(m))
 
 # 参考文献
 
-[^schmidt-samona]: CTFer菜菜.GUET-CTF2019[EB/OL]CSDN.https://blog.csdn.net/MikeCoke/article/details/113915715.2021-02-21.
+[^schmidt-samona]: CTFer菜菜.GUET-CTF2019[EB/OL]CSDN.<a target="_blank" href='https://blog.csdn.net/MikeCoke/article/details/113915715'>https://blog.csdn.net/MikeCoke/article/details/113915715</a>.2021-02-21.
