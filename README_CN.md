@@ -33,6 +33,10 @@ Academic Pages 是用于学术网站的 Github Pages 模板。
     brew install node
     gem install bundler
     ```
+    在 Archlinux 上, 命令为:
+    ```bash
+    sudo pacman -S ruby-bundler nodejs
+    ```
 1. 运行 'bundle install' 以安装 ruby 依赖项。如果遇到错误，请删除 Gemfile.lock，然后重试。
 1. 运行 'jekyll serve -l -H localhost' 生成 HTML 并从 'localhost：4000' 提供它，本地服务器将在更改时自动重建并刷新页面。
 
