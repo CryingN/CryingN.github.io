@@ -1,7 +1,7 @@
 ---
 title: '[Crypto学习笔记] Schmidt-Samona密码系统'
 date: 2024-12-07
-permalink: /posts/2024/11/Crypto_Schmidt-Samona/
+permalink: /posts/2024/12/Schmidt-Samona/
 excerpt: '一种类rsa的密码系统...'
 tags:
   - CTF

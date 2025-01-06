@@ -1,7 +1,7 @@
 ---
 title: '[Crypto学习笔记] 相关性逼近类题目'
-date: 2024-12-07
-permalink: /posts/2024/11/Crypto_DES/
+date: 2024-12-08
+permalink: /posts/2024/12/Correlation_approximation/
 excerpt: '其实根据相关性逼近类题目出现频率还是挺高的...'
 tags:
   - 网络安全

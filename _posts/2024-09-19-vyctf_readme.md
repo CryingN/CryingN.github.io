@@ -1,7 +1,7 @@
 ---
 title: '[VYCTF挑战赛] 赛事说明'
 date: 2024-09-19
-permalink: /posts/2024/09/VYCMa_VYCTF_2/
+permalink: /posts/2024/09/vyctf_readme/
 excerpt: 'VYCTF是由VY开源中国社区旗下sakana联队主办的CTF夺旗赛事...'
 tags:
   - arch
