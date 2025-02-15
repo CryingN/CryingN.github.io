@@ -2,7 +2,7 @@
 title: "VTF(内部开发测试)"
 collection: procedure
 category: manuscripts
-permalink: /publication/netcat
+permalink: /publication/VTF
 excerpt: "VTF是基于vlang的ctf比赛平台, 当前处于内部开发测试..."
 date: 2024-05-31
 venue: 'May 31'

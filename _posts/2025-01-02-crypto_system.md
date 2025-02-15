@@ -199,6 +199,6 @@ function downloadBak() {
 
 [^moxin]: 【强网杯】第六届强网杯青少年线下赛AWDP复盘[EB/OL].个人博客.<a target="_blank" href='https://moxin1044.github.io/articles/57061.html'>https://moxin1044.github.io/articles/57061.html</a>.2024.10.28.
 [^kar3a]: 一次awdplus经历（网鼎杯线下赛）[EB/OL].个人博客.<a target="_blank" href='https://www.cnblogs.com/karsa/p/14062819.html'>https://www.cnblogs.com/karsa/p/14062819.html</a>.2020.11.30
-[^solutions]: 暑假作业写了没.x^2+y^2=n的整数解[EB/OL].知乎.https://zhuanlan.zhihu.com/p/668845092.2023.11.26
-[^complex]: Wbuildings.国城杯2024[EB/OL].个人博客.https://wbuildings.github.io/Crypto/%E5%9B%BD%E5%9F%8E%E6%9D%AF2024/#more.2024.12.07
+[^solutions]: 暑假作业写了没.x^2+y^2=n的整数解[EB/OL].知乎.<a target="_blank" href='https://zhuanlan.zhihu.com/p/668845092'>https://zhuanlan.zhihu.com/p/668845092</a>.2023.11.26
+[^complex]: Wbuildings.国城杯2024[EB/OL].个人博客.<a target="_blank" href='https://wbuildings.github.io/Crypto/%E5%9B%BD%E5%9F%8E%E6%9D%AF2024/#more'>https://wbuildings.github.io/Crypto/%E5%9B%BD%E5%9F%8E%E6%9D%AF2024/#more</a>.2024.12.07
 
