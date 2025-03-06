@@ -8,11 +8,11 @@ main:
   - title: "作品"
     url: /publications/
 
-  - title: "会议"
+  - title: "会议记录"
     url: /talks/    
 
-  - title: "视频"
-    url: /teaching/    
+  #- title: "视频"
+  #  url: /teaching/    
     
   #- title: "Portfolio"
   #  url: /portfolio/

@@ -79,12 +79,17 @@ redirect_from:
 
 在第二届VYctf进行crypto, web与MISC赛道出题. 使用内部开发平台进行测试运维, 并根据实际情况优化平台, 与vlang社区进行对接获取授权.
 
-**2025贵阳贵安第54届全民健身登高迎新跑完赛**
+**贵阳贵安第54届全民健身登高迎新跑完赛**
 
 (2025.01.01)
 
 完赛并获得前列奖励.
 
+**建信人寿众测**
+
+(2025-02-19 - 2025-02-26)
+
+对端口进行扫描分析，识别并评估系统上开放的端口及其服务可能存在的安全弱点，针对相关程序执行模糊测试；同时对小程序进行抓包测试，搜索逻辑漏洞，检查是否存在可被攻击的缺陷。
 
 个人特长
 ======
@@ -98,6 +103,7 @@ redirect_from:
 * 网络安全
   * 密码学
   * 漏洞挖掘
+  * PIA分析
 * 美工
   * 漫画
   * 设计
@@ -114,25 +120,49 @@ redirect_from:
 
 博客文章
 ======
-  <ul>{% for post in site.posts %}
+<ul>
+  {% assign post_count = 0 %}
+  {% for post in site.posts %}
     {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+    {% assign post_count = post_count | plus: 1 %}
+    {% if post_count >= 5 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% if site.posts.size > 5 %}
+    ...
+  {% endif %}
+</ul>
 
 作品
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
+  <ul>
+    {% assign post_count = 0 %}
+    {% for post in site.publications reversed %}
+      {% include archive-single-cv.html %}
+      {% assign post_count = post_count |   plus: 1 %}
+      {% if post_count >= 5 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if site.publications.size > 5 %}
+      ...
+    {% endif %}
+  </ul>
+
+
 会议
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-视频
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-
+  <ul>
+    {% assign post_count = 0 %}
+    {% for post in site.talks reversed %}
+      {% include archive-single-cv.html %}
+      {% assign post_count = post_count |   plus: 1 %}
+      {% if post_count >= 5 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if site.talks.size > 5 %}
+      ...
+    {% endif %}
+  </ul>
