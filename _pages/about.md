@@ -9,7 +9,7 @@ redirect_from:
 
 > CryingN
 >
-> vlang开发者
+> 参与开发vlang语言
 >
 > Sakana联队密码手: sudopacman
 >
